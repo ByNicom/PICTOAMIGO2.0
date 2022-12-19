@@ -20,7 +20,7 @@ Route::get('/home',[HomeController::class,'index'])->name('home.index');
 Route::get('/signin',[HomeController::class,'signin'])->name('home.signin');
 Route::get('/account',[HomeController::class,'account'])->name('cuenta.index');
 Route::get('/horario',[HomeController::class,'horario'])->name('calendario.index');
-Route::get('/jugar/{idCat}',[HomeController::class,'jugar'])->name('juego.jugar');
+Route::get('/jugar',[HomeController::class,'jugar'])->name('juego.jugar');
 Route::get('/juego',[HomeController::class,'juegos'])->name('juego.seleccionar');
 Route::get('/picto',[HomeController::class,'picto'])->name('pictograma.index');
 Route::get('/picto/{pictograma}/edit',[HomeController::class,'edit'])->name('pictograma.edit');

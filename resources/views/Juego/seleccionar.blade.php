@@ -152,7 +152,7 @@ button{
         $( document ).ready(function() {
             $('#jugar').click(function(){
                 let valor = $("#cat :selected").val();
-                window.location.href = "{{route('juego.jugar')}}/"+valor;
+                window.location.href = "{{route('juego.jugar')}}?idCat="+valor;
             }); 
         });
     </script>

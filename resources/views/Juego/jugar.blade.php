@@ -63,9 +63,9 @@ main {
     <div class="main">
         <div class="columna1">
             <div class="Titulo">
-                <label for="">Categoria: </label>
-                
-                <label ></label>
+                <label for="">Categoria: {{$categoria->nomCat}}</label>
+                <br>
+                <label >Palabra Clave: {{$pictoElegido->descPicto}}</label>
 
             </div>
             <div class="reproducir">
@@ -75,19 +75,11 @@ main {
         </div>
         <div class="columna2">
             
-            <div class="Pictograma">
-                <img src="" alt="">
-            </div>
-            <div class="Pictograma">
-                <img src="" alt="">
-            </div>
-
-            <div class="Pictograma">
-                <img src="" alt="">
-            </div>
-            <div class="Pictograma">
-                <img src="" alt="">
-            </div>
+            @foreach ($array_pictos as $p)
+                <div class="pictogramas">
+                    <img src="{{Storage::url($p->pictograma)}}" alt="" height="150" width="150">
+                </div>
+            @endforeach
 
         </div>
     </div>

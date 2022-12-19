@@ -59,9 +59,35 @@ class HomeController extends Controller
         $categorias=Catpicto::all();
         return view('juego.seleccionar',compact("categorias"));
     }
-    public function jugar(int $idCat){;
+    public function jugar(Request $request){
+        $idCat = $request->idCat;
+
+        $random = rand(0, 3);
+
+        if($idCat == null){
+            return view('home.index');
+        }
+        $categoria = Catpicto::find($idCat);
         $pictos=Pictograma::where("idCatPicto",$idCat)->get();
-        return view('juego.jugar',compact("pictos"));
+
+        $array_pictos = [];
+        $ocupados = [];
+
+        for($i = 0; $i < 4; $i++){
+            $numero = rand(0, count($pictos)-1);
+            
+            if(in_array($numero, $ocupados)){
+                $i--;
+                continue;
+            }else{
+                array_push($ocupados, $numero);
+                array_push($array_pictos, $pictos[$numero]);
+            }
+            
+        }
+        $pictoElegido = $pictos[$random];        
+
+        return view('juego.jugar',compact("pictos", "categoria", "pictoElegido", "array_pictos"));
     }
     public function picto(){
         $categorias=Catpicto::all();

@@ -225,15 +225,11 @@ transition: opacity 400ms ease-in;
                         <input readonly  name="email" value="{{$usuario->Email}}"/>
                     </div>
                     <div class="form-dato">
-                        <label for="">Contraseña</label>
-                        <input required  name="password" value="{{$usuario->password}}"/>
-                    </div>
-                    
-                </div>
-                <div class="form-dato" style="margin-bottom: 40px;">
                         <label for="">Clave Parental</label>
                         <input required type="text" name="clave" value="{{$usuario->clave}}"/>
                     </div>
+                </div>
+                
                 <button type="submit" >
                     <img src="./img/Send.png" alt="Enviar informacion" class="button-img">
                 </button>
