@@ -35,7 +35,12 @@ class HomeController extends Controller
         $usuario = Usuario::where('Email',Auth::user()->Email)->first();
         $pictos=Pictograma::all();
         $horario=Acthorario::all();
-        return view('calendario.index',compact("pictos","usuario","horario"));
+        $array_horas = [];
+        foreach($horario as $h){
+            $array_horas[] = date('H', strtotime($h->fecha));
+        }
+
+        return view('calendario.index',compact("pictos","usuario","horario", "array_horas"));
     }
     public function prueba(){
         $usuario = Usuario::where('Email',Auth::user()->Email)->first();

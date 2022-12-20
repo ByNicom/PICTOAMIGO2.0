@@ -216,7 +216,7 @@ transition: opacity 400ms ease-in;
             </div>
             
         </section>
-        <table style="overflow:scroll; width:500px; height:200px;" class="table table-bordered" method="GET" action="{{route('pictograma.all')}}" >
+        <table style="overflow:scroll; width:500px; height:200px; background:#fff;" class="table table-bordered" method="GET" action="{{route('pictograma.all')}}" >
             <thead>
                 <tr >
                     <th class="header_item">Horario</th>
@@ -230,9 +230,17 @@ transition: opacity 400ms ease-in;
                 </tr>
             </thead>
             <tbody>
-                <tr class="column" >
-                    <td width="200"></td>
+                @for($i = 6; $i<23; $i++)
+                <tr>
+                    <td id="fila_{{$i}}">{{$i}}:00</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
+                @endfor
             </tbody>
             </table>
         <div id="agregarPictograma" class="modalDialog">
