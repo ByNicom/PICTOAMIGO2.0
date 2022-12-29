@@ -8,176 +8,180 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-body {
-    height: 100vh;
-    background: rgb(173,250,243);
-    background: linear-gradient(126deg, rgba(173,250,243,1) 8%, rgba(17,238,150,1) 87%);
-}
+    body {
+        height: 100vh;
+        background: rgb(173,250,243);
+        background: linear-gradient(126deg, rgba(173,250,243,1) 8%, rgba(17,238,150,1) 87%);
+    }
 
-nav {
-    display: flex;
-    width: 100%;
-    height: fit-content;
-    justify-content: center;
-    align-items: center;
-    padding: 5px 20px;
-    background-color: #a6dbf4;
-}
-.cuenta a img {
-    height: 70px;
-    width: 70px;
-    border: solid;
-    border-color: black;
-    border-radius: 40px;
-    background-color: white;
-}
-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+    nav {
+        display: flex;
+        width: 100%;
+        height: fit-content;
+        justify-content: center;
+        align-items: center;
+        padding: 5px 20px;
+        background-color: #a6dbf4;
+    }
+    .cuenta a img {
+        height: 70px;
+        width: 70px;
+        border: solid;
+        border-color: black;
+        border-radius: 40px;
+        background-color: white;
+    }
+    main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 
-.taskOptions-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 20px 0;
-}
+    .taskOptions-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 20px 0;
+    }
 
-.addTask {
-    border: 5px solid black;
-    border-radius: 25px;
-    background-color: yellow;
-    color: green;
-    padding: 10px 20px;
-}
+    .addTask {
+        border: 5px solid black;
+        border-radius: 25px;
+        background-color: yellow;
+        color: green;
+        padding: 10px 20px;
+    }
 
-.addTask-button img{
-    width: 50px;
-    height: 50px;
-    
-}
+    .addTask-button img{
+        width: 50px;
+        height: 50px;
+        
+    }
 
-.schedule {
-    margin-left: 10%;
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border: 5px solid black;
-}
+    .schedule {
+        margin-left: 10%;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 5px solid black;
+    }
 
-.header,.row {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-}
+    .header,.row {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
 
-.header_item {
-    width: 100%;
-    text-align: center;
-}
+    .header_item {
+        width: 100%;
+        text-align: center;
+    }
 
-.row_item {
-    width: 100%;
-    text-align: center;
-    background-color: white;
-}
+    .row_item {
+        width: 100%;
+        text-align: center;
+        background-color: white;
+    }
 
-.header_item:nth-child(1){
-    background-color: lightskyblue;
-}
+    .header_item:nth-child(1){
+        background-color: lightskyblue;
+    }
 
-.header_item:nth-child(2){
-    background-color: green;
-}
+    .header_item:nth-child(2){
+        background-color: green;
+    }
 
-.header_item:nth-child(3){
-    background-color: yellow;
-}
+    .header_item:nth-child(3){
+        background-color: yellow;
+    }
 
-.header_item:nth-child(4){
-    background-color: orange;
-}
+    .header_item:nth-child(4){
+        background-color: orange;
+    }
 
-.header_item:nth-child(5){
-    background-color: rgb(229, 103, 103);
-}
+    .header_item:nth-child(5){
+        background-color: rgb(229, 103, 103);
+    }
 
-.header_item:nth-child(6){
-    background-color: rgb(254, 95, 206);
-}
+    .header_item:nth-child(6){
+        background-color: rgb(254, 95, 206);
+    }
 
-.header_item:nth-child(7){
-    background-color: rgb(224, 74, 244);
-}
+    .header_item:nth-child(7){
+        background-color: rgb(224, 74, 244);
+    }
 
-.header_item:nth-child(8){
-    background-color: rgb(161, 114, 227);
-}
+    .header_item:nth-child(8){
+        background-color: rgb(161, 114, 227);
+    }
 
-.modalDialog {
-	position: fixed;
-	font-family: Arial, Helvetica, sans-serif;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background: rgba(0,0,0,0.8);
-	z-index: 99999;
-	opacity:0;
-	-webkit-transition: opacity 400ms ease-in;
-	-moz-transition: opacity 400ms ease-in;
-	transition: opacity 400ms ease-in;
-	pointer-events: none;
-}
-.modalDialog:target {
-	opacity:1;
-	pointer-events: auto;
-}
-.modalDialog > div {
-	width: 400px;
-	position: relative;
-	margin: 10% auto;
-	padding: 5px 20px 13px 20px;
-	border-radius: 10px;
-	background: #fff;
-	background: -moz-linear-gradient(#fff, #999);
-	background: -webkit-linear-gradient(#fff, #999);
-	background: -o-linear-gradient(#fff, #999);
-  -webkit-transition: opacity 400ms ease-in;
--moz-transition: opacity 400ms ease-in;
-transition: opacity 400ms ease-in;
-}
-.close {
-	background: #606061;
-	color: #FFFFFF;
-	line-height: 25px;
-	position: absolute;
-	right: -12px;
-	text-align: center;
-	top: -10px;
-	width: 24px;
-	text-decoration: none;
-	font-weight: bold;
-	-webkit-border-radius: 12px;
-	-moz-border-radius: 12px;
-	border-radius: 12px;
-	-moz-box-shadow: 1px 1px 3px #000;
-	-webkit-box-shadow: 1px 1px 3px #000;
-	box-shadow: 1px 1px 3px #000;
-}
-.close:hover { background: #00d9ff; }
+    .modalDialog {
+        position: fixed;
+        font-family: Arial, Helvetica, sans-serif;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0,0,0,0.8);
+        z-index: 99999;
+        opacity:0;
+        -webkit-transition: opacity 400ms ease-in;
+        -moz-transition: opacity 400ms ease-in;
+        transition: opacity 400ms ease-in;
+        pointer-events: none;
+    }
+    .modalDialog:target {
+        opacity:1;
+        pointer-events: auto;
+    }
+    .modalDialog > div {
+        width: 400px;
+        position: relative;
+        margin: 10% auto;
+        padding: 5px 20px 13px 20px;
+        border-radius: 10px;
+        background: #fff;
+        background: -moz-linear-gradient(#fff, #999);
+        background: -webkit-linear-gradient(#fff, #999);
+        background: -o-linear-gradient(#fff, #999);
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    }
+    .close {
+        background: #606061;
+        color: #FFFFFF;
+        line-height: 25px;
+        position: absolute;
+        right: -12px;
+        text-align: center;
+        top: -10px;
+        width: 24px;
+        text-decoration: none;
+        font-weight: bold;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        border-radius: 12px;
+        -moz-box-shadow: 1px 1px 3px #000;
+        -webkit-box-shadow: 1px 1px 3px #000;
+        box-shadow: 1px 1px 3px #000;
+    }
+    .close:hover { background: #00d9ff; }
 
+    .img-horario{
+        width: 80px;
+        height: 40px;
+    }
 
 
 
@@ -232,13 +236,14 @@ transition: opacity 400ms ease-in;
             <tbody>
                 @for($i = 6; $i<23; $i++)
                     <tr>
-                        <td id="fila_{{$i}}">{{$i}}:00</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td id="fila_{{$i}}_col_0">{{$i}}:00</td>
+                        <td id="fila_{{$i}}_col_1"></td>
+                        <td id="fila_{{$i}}_col_2"></td>
+                        <td id="fila_{{$i}}_col_3"></td>
+                        <td id="fila_{{$i}}_col_4"></td>
+                        <td id="fila_{{$i}}_col_5"></td>
+                        <td id="fila_{{$i}}_col_6"></td>
+                        <td id="fila_{{$i}}_col_7"></td>
                     </tr>
                 @endfor
             </tbody>
@@ -286,21 +291,87 @@ transition: opacity 400ms ease-in;
                             </div>
                         </div>
                     </div> 
+                    <input type="button" value="Press me" id="x">
     </div>
-        <script>
-            function adulto() {
-                $usuario="";
-                if (document.getElementById('flexSwitchCheckDefault').checked) {
-                    console.log("adulto");
-                    
-                    return $usuario;
-                    
-                } else {
-                    console.log("niño");
-                    return $usuario;
-                }
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script>
+
+        $('#x').click(function(){
+            const synth = window.speechSynthesis;
+            let text = "Hola Mundo";
+            const utterThis = new SpeechSynthesisUtterance(text);
+
+            synth.speak(utterThis);
+        }); 
+
+
+
+        var dias = [];
+        dias['lunes']  = 1;
+        dias['martes']  = 2;
+        dias['miercoles']  = 3;
+        dias['jueves']  = 4;
+        dias['viernes']  = 5;
+        dias['sabado']  = 6;
+        dias['domingo']  = 7;
+
+
+
+        @foreach($pictos_semana as $picto)
+            var diaSemana = "{{$picto->diaSem}}";
+            var fecha = "{{$picto->fecha}}";
+
+            var hora = parseInt(fecha.split(":")[0]);
+            var numSemana = dias[diaSemana.toLowerCase()];
+
+            $("#fila_"+hora+"_col_"+numSemana).append(
+                    $("<img>").addClass("img-horario").attr('src', '{{Storage::url($picto->pictograma)}}'),
+            );
+
+        @endforeach
+
+
+
+        function adulto() {
+            $usuario="";
+            if (document.getElementById('flexSwitchCheckDefault').checked) {
+                console.log("adulto");
+                
+                return $usuario;
+                
+            } else {
+                console.log("niño");
+                return $usuario;
             }
-        </script>
+        }
+
+
+        function sonido(){
+        
+            $.ajax({
+                url : 'url',
+                data : { id_contrato : id_contrato },
+                type : 'GET',
+                dataType : 'json',
+                success : function(json) {
+                    console.log("X");
+                    let patente = json['patente'];
+                    let fecha_inicio = json['fecha_salida'];
+                    let fecha_fin = $('#fecha_llegada').val();
+                    calcularTotalTag(patente, fecha_inicio, fecha_fin);
+
+                },
+                error : function(xhr, status) {
+                    console.log("Ocurrio un Error " + status);
+                },
+            });
+        
+        }
+
+
+
+
+    </script>
 
 </body>
 </html>

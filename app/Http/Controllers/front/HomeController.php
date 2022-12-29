@@ -39,8 +39,11 @@ class HomeController extends Controller
         foreach($horario as $h){
             $array_horas[] = date('H', strtotime($h->fecha));
         }
+        
+        $pictos_semana = Acthorario::join('pictograma', 'act_horario.idPicto', '=', 'pictograma.idPicto')->get();
+        
 
-        return view('calendario.index',compact("pictos","usuario","horario", "array_horas"));
+        return view('calendario.index',compact("pictos","usuario","horario", "array_horas", "pictos_semana"));
     }
     public function prueba(){
         $usuario = Usuario::where('Email',Auth::user()->Email)->first();
