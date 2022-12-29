@@ -180,7 +180,7 @@
 
     .img-horario{
         width: 80px;
-        height: 40px;
+        height: 70px;
     }
 
 
@@ -291,19 +291,29 @@
                             </div>
                         </div>
                     </div> 
-                    <input type="button" value="Press me" id="x">
     </div>
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
     <script>
 
         $('#x').click(function(){
+            
             const synth = window.speechSynthesis;
-            let text = "Hola Mundo";
+            var text = "{{$p->nomPicto}}";
+            
             const utterThis = new SpeechSynthesisUtterance(text);
 
             synth.speak(utterThis);
         }); 
 
+        $('#y').click(function(){
+            
+            const synth = window.speechSynthesis;
+            var text = "a";
+            
+            const utterThis = new SpeechSynthesisUtterance(text);
+
+            synth.speak(utterThis);
+        }); 
 
 
         var dias = [];
@@ -320,12 +330,14 @@
         @foreach($pictos_semana as $picto)
             var diaSemana = "{{$picto->diaSem}}";
             var fecha = "{{$picto->fecha}}";
+            var nomPicto = "{{$picto->nomPicto}}";
 
             var hora = parseInt(fecha.split(":")[0]);
             var numSemana = dias[diaSemana.toLowerCase()];
+            
 
             $("#fila_"+hora+"_col_"+numSemana).append(
-                    $("<img>").addClass("img-horario").attr('src', '{{Storage::url($picto->pictograma)}}'),
+                    $("<img>").addClass("img-horario").attr({src:"{{Storage::url($picto->pictograma)}}",title:"{{$picto->nomPicto}}",onclick:"sonido(title)"}),
             );
 
         @endforeach
@@ -337,34 +349,39 @@
             if (document.getElementById('flexSwitchCheckDefault').checked) {
                 console.log("adulto");
                 
+
+                const synth = window.speechSynthesis;
+                var text = "adulto";
+                
+                const utterThis = new SpeechSynthesisUtterance(text);
+
+                synth.speak(utterThis);
+
+
                 return $usuario;
                 
             } else {
                 console.log("niño");
+
+                const synth = window.speechSynthesis;
+                var text = "niño";
+                
+                const utterThis = new SpeechSynthesisUtterance(text);
+
+                synth.speak(utterThis);
+
                 return $usuario;
             }
         }
 
 
-        function sonido(){
-        
-            $.ajax({
-                url : 'url',
-                data : { id_contrato : id_contrato },
-                type : 'GET',
-                dataType : 'json',
-                success : function(json) {
-                    console.log("X");
-                    let patente = json['patente'];
-                    let fecha_inicio = json['fecha_salida'];
-                    let fecha_fin = $('#fecha_llegada').val();
-                    calcularTotalTag(patente, fecha_inicio, fecha_fin);
+        function sonido(title){
+            const synth = window.speechSynthesis;
+                var text = title;
+                
+                const utterThis = new SpeechSynthesisUtterance(text);
 
-                },
-                error : function(xhr, status) {
-                    console.log("Ocurrio un Error " + status);
-                },
-            });
+                synth.speak(utterThis);
         
         }
 

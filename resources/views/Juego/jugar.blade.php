@@ -110,7 +110,7 @@ main {
         </div>
         <div class="columna2" style="display: flex;justify-content: space-around;align-items: center;">
             <div class="reproducir" style="display: flex;flex-direction: column;align-items: center;">
-                <button class="reproduce-button" style="margin-top:38px;border:solid 5px;border-radius:81px;background:yellow;height:93px;width:100px;">
+                <button class="reproduce-button" id="x" style="margin-top:38px;border:solid 5px;border-radius:81px;background:yellow;height:93px;width:100px;">
                     <img src="./img/voz.png" style="width:82px;border:solid4px;border-radius:89px;height:60px;background:yellow;padding:5px;">
                 </button>
                 <label style="font-size: 80px;font-weight: 600;font-family: cursive;">{{$pictoElegido->nomPicto}}</label>
@@ -134,5 +134,21 @@ main {
         </div>
     </div>
 
+
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script>
+        
+        $('#x').click(function(){
+            console.log("e");
+            const synth = window.speechSynthesis;
+            let text = "{{$pictoElegido->nomPicto}}";
+            const utterThis = new SpeechSynthesisUtterance(text);
+
+            synth.speak(utterThis);
+        }); 
+
+    </script>
 </body>
+
+
 </html>
