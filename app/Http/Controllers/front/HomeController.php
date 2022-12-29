@@ -75,7 +75,8 @@ class HomeController extends Controller
         $categoria = Catpicto::find($idCat);
         $pictos=Pictograma::where("idCatPicto",$idCat)->get();
 
-        $array_pictos = [];
+        $array_pictos1 = [];
+        $array_pictos2 = [];
         $ocupados = [];
 
         for($i = 0; $i < 4; $i++){
@@ -86,13 +87,18 @@ class HomeController extends Controller
                 continue;
             }else{
                 array_push($ocupados, $numero);
-                array_push($array_pictos, $pictos[$numero]);
+                if($i <= 1){
+                    array_push($array_pictos1, $pictos[$numero]);
+                }else{
+                    array_push($array_pictos2, $pictos[$numero]);
+                }
+                
             }
             
         }
         $pictoElegido = $pictos[$random];        
 
-        return view('juego.jugar',compact("pictos", "categoria", "pictoElegido", "array_pictos"));
+        return view('juego.jugar',compact("pictos", "categoria", "pictoElegido", "array_pictos1", "array_pictos2"));
     }
     public function picto(){
         $categorias=Catpicto::all();

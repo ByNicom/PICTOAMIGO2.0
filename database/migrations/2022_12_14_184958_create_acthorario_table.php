@@ -17,7 +17,8 @@ return new class extends Migration
             $table->increments('idHorario');
             $table->string('email',50);
             $table->integer ("idPicto")->unsigned();
-            $table->datetime('fecha');
+            $table->time('fecha');
+            $table->string('diaSem',10);
             $table->softDeletes();
         });
     }

@@ -231,15 +231,15 @@ transition: opacity 400ms ease-in;
             </thead>
             <tbody>
                 @for($i = 6; $i<23; $i++)
-                <tr>
-                    <td id="fila_{{$i}}">{{$i}}:00</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                    <tr>
+                        <td id="fila_{{$i}}">{{$i}}:00</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 @endfor
             </tbody>
             </table>
@@ -251,8 +251,8 @@ transition: opacity 400ms ease-in;
                                 <form  method="POST" action="{{route('horario.store')}}">
                                     @csrf
                                     <div class="input-container">
-                                    <div class="form-dato">
-                                            <label for="Picto">Seleccionar Id</label>
+                                        <div class="form-dato">
+                                            <label for="Picto">Seleccionar Pictograma</label>
                                             <select name="idPicto">
                                                 @foreach($pictos as $p)
                                                     <option value="{{$p->idPicto}}">{{$p->nomPicto}}</option>
@@ -260,8 +260,24 @@ transition: opacity 400ms ease-in;
                                             </select>
                                         </div>
                                         <div class="form-dato">
-                                            <label for="">Dia Actividad</label>
-                                            <input required type="datetime-local" name="fecha"/>
+                                            <label for="Picto">Seleccionar Dia</label>
+                                            <select name="diaSem">
+                                                <option value="Lunes">Lunes</option>
+                                                <option value="Martes">Martes</option>
+                                                <option value="Miercoles">Miercoles</option>
+                                                <option value="Jueves">Jueves</option>
+                                                <option value="Viernes">Viernes</option>
+                                                <option value="Sabado">Sabado</option>
+                                                <option value="Domingo">Domingo</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-dato">
+                                            <label for="">Hora Actividad</label>
+                                            <select name="fecha" id="">
+                                                @for($i = 6; $i<23; $i++)
+                                                    <option value="{{$i}}:00">{{$i}}:00</option>
+                                                @endfor
+                                            </select>
                                         </div>
                                         <button  type="submit">
                                         <img src="./img/Send.png" alt="Enviar informacion" class="button-img">

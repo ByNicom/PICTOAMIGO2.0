@@ -31,6 +31,7 @@ class ActhorarioController extends Controller
         $acthorario = new Acthorario(); 
         $acthorario->idPicto = $request->idPicto;
         $acthorario->fecha = $request->fecha;
+        $acthorario->diaSem = $request->diaSem;
         $acthorario->email = Auth::user()->Email;
         $acthorario->save();
         return redirect()->route('calendario.index');
