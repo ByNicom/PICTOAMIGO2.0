@@ -143,7 +143,7 @@ button{
                         @endforeach
                     </select>
                 
-                    <button id="jugar">Jueguemos!</button>
+                    <button id="jugar">Juguemos!</button>
             </div>
         </div>
     </div>

@@ -305,16 +305,6 @@
             synth.speak(utterThis);
         }); 
 
-        $('#y').click(function(){
-            
-            const synth = window.speechSynthesis;
-            var text = "a";
-            
-            const utterThis = new SpeechSynthesisUtterance(text);
-
-            synth.speak(utterThis);
-        }); 
-
 
         var dias = [];
         dias['lunes']  = 1;

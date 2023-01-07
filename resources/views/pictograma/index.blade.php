@@ -253,7 +253,7 @@
     @foreach($pictogramas as $p)
     <tr class="column" >
         <td width="200">{{$p->idPicto}}</td>
-        <a href=""></a><td width="200"><div class="picto"><img src="{{Storage::url($p->pictograma)}}" alt=""></div></td>
+        <td width="200"><div class="picto"><button class="picto-img" id="img-{{$p->idPicto}}"><img src="{{Storage::url($p->pictograma)}}" ></button></div></td>
         <td width="200">{{$p->nomPicto}}</td>
         <td width="200">{{$p->descPicto}}</td>
         <td width="200">
@@ -290,6 +290,12 @@
                         <a href="#agregarPictograma">
                         <img src="./img/plus.png" alt="Agregar tarea" ></a>
                     </button>
+                    <dialog id="myDialog">
+                        <h3>This is the heading</h3>
+                        <p>This is the dialog paragraph.</p>
+                        <button id="hide">Close</button>                                    
+                    </dialog>
+                    
                     
 
                     <div id="openModal" class="modalDialog">
@@ -352,19 +358,79 @@
                 </div>     
             </div>
         </div>
+        <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
         <script>
             function adulto() {
                 $usuario="";
+                var dialog = document.getElementById('myDialog'); 
                 if (document.getElementById('flexSwitchCheckDefault').checked) {
                     console.log("adulto");
-                    
+        	        dialog.show(); 
+
                     return $usuario;
                     
                 } else {
                     console.log("niño");
+                    dialog.close(); 
                     return $usuario;
                 }
             }
+
+            $(".reproduce-button").click(function(){
+                const synth = window.speechSynthesis;
+                
+                
+                const utterThis = new SpeechSynthesisUtterance(frase);
+
+                synth.speak(utterThis);
+            });
+
+            $(".limpiar-button").click(function(){
+                frase=[];
+                valores=[];
+            });
+
+            $(".picto-img").click(function(){
+
+                $("#"+this.id).click(function(){
+                    var existe=false;
+                    valores=[];
+                    var children = $("tr td")[0].innerHTML;
+
+                    $(this).parents("tr").find('td:eq(2)').each(function(){
+                    valores.push(this);
+                    });
+                    
+                    console.log(valores[0].innerHTML)
+                    picto=valores[0].innerHTML;
+                    existe=frase.includes(picto);
+                    if(existe==false){
+                        frase.push(valores[0].innerHTML);
+                    }else{
+                        console.log("no se puede añadir mas de 1 el mismo picto");
+                    }
+
+                    $(this).parents("tr").find('td:eq(1)').each(function(){
+                    valores_picto.push(this);
+                    });
+                    
+                    console.log(valores_picto[0].innerHTML)
+                    picto_1=valores_picto[0].innerHTML;
+                    existe_1=frase_1.includes(picto);
+                    if(existe_1==false){
+                        frase_1.push(valores_picto[0].innerHTML);
+                    }else{
+                        console.log("no se puede añadir mas de 1 el mismo picto");
+                    }
+                });
+
+                
+
+            });
+            var frase=[];
+            var valores=[];
+            var valores_pic=[];
+
         </script>
     </div>
     
