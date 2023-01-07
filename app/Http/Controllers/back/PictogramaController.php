@@ -83,4 +83,15 @@ class PictogramaController extends Controller
         $pictograma->delete();
         return redirect()->route("pictograma.index");
     }
+
+    public function buscar(Request $request){
+        dd($request);
+        $data = Pictograma::where('nomPicto', $request->busqueda);
+
+        return redirect()->route('pictograma.index');
+
+    }
+
+
+
 }

@@ -194,7 +194,13 @@
 
 
 </style>
-
+<style>
+    
+    .Frase img{
+        width: 80px;
+        height: 60px;
+    }
+</style>
     
 
 </head>
@@ -219,22 +225,54 @@
 
     <div class="mainVista">
         <div class="columnaBusqueda">
-            <div class="Busqueda">
-                <div class="buscar">
-                    <button>Buscar</button>
-                    <input type="Buscar Pictograma">
-                </div>
+            <form class="form" method="POST" action="{{route('pictograma.store')}}">
+                @csrf
+                <div class="Busqueda">
+                    <label for="busqueda">B&uacute;squeda</label> <br><br>
+                    <div class="buscar">
+                        <input type="text" name="busqueda" id="busqueda" class="form-control mx-3" required>
+                    </div>
                 <div class="form-dato">
-                    <form class="form" method="POST" action="{{route('pictograma.store')}}">
-                        @csrf
-                        <select id="color" name="idCatPicto">
-                            @foreach($categorias as $cat)
-                                <option value="{{$cat->idCatPicto}}" >{{$cat->nomCat}}</option>
-                            @endforeach
-                        </select>
-                    </form>
+                    <select id="color" name="idCatPicto" class="form-control mx-3">
+                        @foreach($categorias as $cat)
+                            <option value="{{$cat->idCatPicto}}" >{{$cat->nomCat}}</option>
+                        @endforeach
+                    </select>
                 </div>
+                <div class="boton">
+                    <input type="submit" value="B&uacute;scar" class="btn btn-success">
+                </div>
+            </form>
+        </div>
+
+    
+    {{-- <div class="mainVista">
+        <div class="columnaBusqueda">
+            <div class="busqueda">
+                <div class="buscar"></div>
+                <form class="form" method="POST" action="{{route('pictograma.buscar')}}">
+                    @csrf
+
+                    <label for="busqueda">Buscar: </label>
+                    <input type="text" name="busqueda" id="busqueda" required>
+
+
+                    <select id="color" name="idCatPicto">
+                        @foreach($categorias as $cat)
+                            <option value="{{$cat->idCatPicto}}" >{{$cat->nomCat}}</option>
+                        @endforeach
+                    </select>
+
+                    <button type="submit" class="btn btn-success">Buscar</button>
+
+                </form>
+                </div>
+
+
             </div>
+        </div> --}}
+
+
 
          
 
@@ -281,7 +319,7 @@
                     </button>
                 </div>
                 <div class="Frase">
-                    <tbody></tbody>
+                    
                 </div>
             </div>
             <div class="AgregarPictograma">
@@ -386,13 +424,16 @@
             });
 
             $(".limpiar-button").click(function(){
+                $('.Frase').html("");
                 frase=[];
                 valores=[];
+                valores_pic = [];
+
             });
 
             $(".picto-img").click(function(){
 
-                $("#"+this.id).click(function(){
+                $("#"+this.id).click(function(event){
                     var existe=false;
                     valores=[];
                     var children = $("tr td")[0].innerHTML;
@@ -410,18 +451,19 @@
                         console.log("no se puede añadir mas de 1 el mismo picto");
                     }
 
-                    $(this).parents("tr").find('td:eq(1)').each(function(){
-                    valores_picto.push(this);
-                    });
+                    //obtener imagen
+
+                    let src_imagen = $("#"+this.id+" img").attr("src");
                     
-                    console.log(valores_picto[0].innerHTML)
-                    picto_1=valores_picto[0].innerHTML;
-                    existe_1=frase_1.includes(picto);
-                    if(existe_1==false){
-                        frase_1.push(valores_picto[0].innerHTML);
+
+                    existe=valores_pic.includes(src_imagen);
+                    if(!existe){
+                        valores_pic.push(src_imagen);
                     }else{
                         console.log("no se puede añadir mas de 1 el mismo picto");
                     }
+
+                    agregarImagen(valores_pic);
                 });
 
                 
@@ -430,6 +472,27 @@
             var frase=[];
             var valores=[];
             var valores_pic=[];
+
+
+            function agregarImagen(valores_pic){
+                
+                //$('.Frase').innerHTML = "";
+                $(".Frase").html("");
+                
+
+                valores_pic.forEach(element => {
+
+                    let img = new Image();
+                    img.src = element;
+                    
+                    $('.Frase').append(img);
+                });
+
+                valores_pic = [];
+            
+            }
+
+
 
         </script>
     </div>

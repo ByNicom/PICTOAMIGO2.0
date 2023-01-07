@@ -37,6 +37,7 @@ Route::post('/pictograma',[PictogramaController::class,'store'])->name('pictogra
 Route::get('/pictogramas',[PictogramaController::class,'index'])->name('pictograma.all');
 Route::post('/pictogramas/udpate',[PictogramaController::class,'update'])->name('pictograma.update');
 Route::post('/pictogramas/delete',[PictogramaController::class,'destroy'])->name('pictograma.delete');
+Route::post('/pictogramas/buscar', [PictogramaController::class,'buscar'])->name('pictograma.buscar');
 
 Route::post('/Horario',[ActhorarioController::class,'store'])->name('horario.store');
 
