@@ -71,4 +71,18 @@ class ActhorarioController extends Controller
         return $acthorario;
         $acthorario->delete();
     }
+
+    function limpiar(){
+        $act_horario = ActHorario::where('email', Auth::user()->Email)->get();
+        
+
+        foreach($act_horario as $h){
+            $h->delete();
+        }
+
+
+        return redirect()->route('calendario.index');
+    }
+
+
 }

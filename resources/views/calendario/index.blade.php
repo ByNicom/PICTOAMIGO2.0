@@ -217,8 +217,14 @@
                         <img src="{{asset('img/plus.png')}}" alt="Agregar tarea">
                     </a>
                 </button>
+                
             </div>
-            
+            <div class="form-limpiar">
+                <form action="{{route('horario.limpiar')}}" method="post">
+                    @csrf
+                    <input type="submit" value="Limpiar Horario">
+                </form>
+            </div>
         </section>
         <table style="overflow:scroll; width:500px; height:200px; background:#fff;" class="table table-bordered" method="GET" action="{{route('pictograma.all')}}" >
             <thead>

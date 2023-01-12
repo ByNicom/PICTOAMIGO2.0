@@ -34,13 +34,15 @@ class HomeController extends Controller
     public function horario(){
         $usuario = Usuario::where('Email',Auth::user()->Email)->first();
         $pictos=Pictograma::all();
-        $horario=Acthorario::all();
+        //$horario=Acthorario::all();
+        $horario = Acthorario::where('email', Auth::user()->Email)->get();
+        //dd($horario);
         $array_horas = [];
         foreach($horario as $h){
             $array_horas[] = date('H', strtotime($h->fecha));
         }
         
-        $pictos_semana = Acthorario::join('pictograma', 'act_horario.idPicto', '=', 'pictograma.idPicto')->get();
+        $pictos_semana = Acthorario::join('pictograma', 'act_horario.idPicto', '=', 'pictograma.idPicto')->where('act_horario.email', Auth::user()->Email)->get();
         
 
         return view('calendario.index',compact("pictos","usuario","horario", "array_horas", "pictos_semana"));
@@ -52,14 +54,13 @@ class HomeController extends Controller
     }
     public function edit(int $picto){
         $categorias=Catpicto::all();
-        $pictograma=Pictograma::all();
-        $picto=$pictograma[$picto-1];
+        $picto = Pictograma::find($picto);
         return view('pictograma.edit',compact('picto',"categorias"));
     }
 
     public function borrar(int $picto){
-        $pictograma=Pictograma::all();
-        $picto=$pictograma[$picto-1];
+        $picto = Pictograma::find($picto);
+
         return view('pictograma.borrar', compact('picto'));
     }
 
@@ -103,9 +104,23 @@ class HomeController extends Controller
 
         return view('juego.jugar',compact("pictos", "categoria", "pictoElegido", "array_pictos1", "array_pictos2"));
     }
-    public function picto(){
+    public function picto(Request $request){
+        
+        $filtrar = null;
+
+        $clave = Usuario::where('Email',Auth::user()->Email)->first()->clave;
+        
+        if(isset($request->filtrar)){
+            $filtrar = $request->filtrar;
+        }
+
         $categorias=Catpicto::all();
         $pictogramas=Pictograma::all();
-        return view('pictograma.index',compact("categorias","pictogramas"));
+
+        $data = Pictograma::where('nomPicto', $request->busqueda)
+        ->orWhere('idCatPicto', $request->idCatPicto)->get();
+
+
+        return view('pictograma.index',compact("categorias","pictogramas", "data", "filtrar", "clave"));
     }
 }

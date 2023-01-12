@@ -7,6 +7,7 @@ use App\Models\Pictograma;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Catpicto;
 
 class PictogramaController extends Controller
 {
@@ -79,17 +80,23 @@ class PictogramaController extends Controller
     public function destroy(Request $request,Pictograma $pictograma)
     {
         $pictograma=Pictograma::find($request->idPicto);
-        $pictograma->idPicto = $request->idPicto;
+        //$pictograma->idPicto = $request->idPicto;
         $pictograma->delete();
         return redirect()->route("pictograma.index");
     }
 
     public function buscar(Request $request){
-        dd($request);
-        $data = Pictograma::where('nomPicto', $request->busqueda);
+        $filtrar = 1;
+        $idCatPicto = $request->idCatPicto;
+        $busqueda = $request->busqueda;
 
+
+        return redirect()->route('pictograma.index', compact("filtrar", "idCatPicto", "busqueda"));
+
+    }
+
+    public function limpiar(){
         return redirect()->route('pictograma.index');
-
     }
 
 

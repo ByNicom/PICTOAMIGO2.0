@@ -38,8 +38,10 @@ Route::get('/pictogramas',[PictogramaController::class,'index'])->name('pictogra
 Route::post('/pictogramas/udpate',[PictogramaController::class,'update'])->name('pictograma.update');
 Route::post('/pictogramas/delete',[PictogramaController::class,'destroy'])->name('pictograma.delete');
 Route::post('/pictogramas/buscar', [PictogramaController::class,'buscar'])->name('pictograma.buscar');
+Route::get('/pictogramas/limpiar', [PictogramaController::class,'limpiar'])->name('pictograma.limpiar');
 
 Route::post('/Horario',[ActhorarioController::class,'store'])->name('horario.store');
+Route::post('/Horario/limpiar',[ActhorarioController::class,'limpiar'])->name('horario.limpiar');
 
 
 Route::get('/account/{{usuario}}',[UsuarioController::class,'show'])->name('usuario.show');

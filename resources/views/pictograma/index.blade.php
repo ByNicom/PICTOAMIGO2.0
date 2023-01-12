@@ -225,7 +225,7 @@
 
     <div class="mainVista">
         <div class="columnaBusqueda">
-            <form class="form" method="POST" action="{{route('pictograma.store')}}">
+            <form class="form" method="POST" action="{{route('pictograma.buscar')}}">
                 @csrf
                 <div class="Busqueda">
                     <label for="busqueda">B&uacute;squeda</label> <br><br>
@@ -238,6 +238,9 @@
                             <option value="{{$cat->idCatPicto}}" >{{$cat->nomCat}}</option>
                         @endforeach
                     </select>
+                </div>
+                <div class="limpiar">
+                    <a href="{{route('pictograma.limpiar')}}" class="btn btn-info">Limpiar</a>
                 </div>
                 <div class="boton">
                     <input type="submit" value="B&uacute;scar" class="btn btn-success">
@@ -288,20 +291,38 @@
     </tr>
   </thead>
   <tbody>
-    @foreach($pictogramas as $p)
-    <tr class="column" >
-        <td width="200">{{$p->idPicto}}</td>
-        <td width="200"><div class="picto"><button class="picto-img" id="img-{{$p->idPicto}}"><img src="{{Storage::url($p->pictograma)}}" ></button></div></td>
-        <td width="200">{{$p->nomPicto}}</td>
-        <td width="200">{{$p->descPicto}}</td>
-        <td width="200">
-            <div class="botonesPicto">
-                <a href="{{route('pictograma.edit',$p->idPicto)}}"><button>Editar</button></a>
-                <a href="{{route('pictograma.borrar',$p->idPicto)}}"><button>Borrar</button></a>
-            </div>
-        </td>
-    </tr>
-     @endforeach
+    @if($filtrar != null)
+        @foreach ($data as $d)
+            <tr class="column" >
+                <td width="200">{{$d->idPicto}}</td>
+                <td width="200"><div class="picto"><button class="picto-img" id="img-{{$d->idPicto}}"><img src="{{Storage::url($d->pictograma)}}" ></button></div></td>
+                <td width="200">{{$d->nomPicto}}</td>
+                <td width="200">{{$d->descPicto}}</td>
+                <td width="200">
+                    <div class="botonesPicto">
+                        <a href="{{route('pictograma.edit',$d->idPicto)}}"><button>Editar</button></a>
+                        <a href="{{route('pictograma.borrar',$d->idPicto)}}"><button>Borrar</button></a>
+                    </div>
+                </td>
+            </tr>
+        @endforeach
+    @else
+        @foreach($pictogramas as $p)
+            <tr class="column" >
+                <td width="200">{{$p->idPicto}}</td>
+                <td width="200"><div class="picto"><button class="picto-img" id="img-{{$p->idPicto}}"><img src="{{Storage::url($p->pictograma)}}" ></button></div></td>
+                <td width="200">{{$p->nomPicto}}</td>
+                <td width="200">{{$p->descPicto}}</td>
+                <td width="200">
+                    <div class="botonesPicto">
+                        <a href="{{route('pictograma.edit',$p->idPicto)}}"><button>Editar</button></a>
+                        <a href="{{route('pictograma.borrar',$p->idPicto)}}"><button>Borrar</button></a>
+                    </div>
+                </td>
+            </tr>
+        @endforeach
+    @endif
+    
   </tbody>
  
 </table>
@@ -323,7 +344,7 @@
                 </div>
             </div>
             <div class="AgregarPictograma">
-                <div class="titulo"> <label for="">Agregar Pictograma</label></div>
+                <div class="titulo" id="add_picto"> <label for="">Agregar Pictograma</label></div>
                     <button class="addTask-button" style="margin-top:20px ">
                         <a href="#agregarPictograma">
                         <img src="./img/plus.png" alt="Agregar tarea" ></a>
@@ -399,18 +420,31 @@
         <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
         <script>
             function adulto() {
-                $usuario="";
-                var dialog = document.getElementById('myDialog'); 
+                // $usuario="";
+                // var dialog = document.getElementById('myDialog'); 
                 if (document.getElementById('flexSwitchCheckDefault').checked) {
-                    console.log("adulto");
-        	        dialog.show(); 
+                    // console.log("adulto");
 
-                    return $usuario;
+                    let clave = prompt("Ingrese su clave parental");
+
+                    if(clave == "{{$clave}}"){
+                        console.log("Aprobado");
+                        $('#add_picto').hide();
+                    }else{
+                        $('#add_picto').show();
+                        console.log("No Aprobado");
+                        $('#flexSwitchCheckDefault').prop("checked", false);
+                    }
+
+
+        	        // dialog.show(); 
+
+                    // return $usuario;
                     
                 } else {
-                    console.log("niño");
-                    dialog.close(); 
-                    return $usuario;
+                    // console.log("niño");
+                    // dialog.close(); 
+                    // return $usuario;
                 }
             }
 
