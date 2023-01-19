@@ -24,7 +24,7 @@
     }
     body {
         height: 100vh;
-        background: rgb(82, 231, 225);
+        background-color: #8fd2f7;
     }
 
     .mascota img{
@@ -167,10 +167,10 @@
 
     
     <div class="container-app">
-        <div id="app" class="form-container">
+        <div id="app" class="form-container" >
         <div id="borrarPictograma" style="display:flex;flex-direction:column;align-items:center;">
                             <div class="SeguroParental"><h3>Borrar Pictograma</h3></div>
-                                <h3>{{$picto->idPicto}}</h3>
+                                
                                 <form  method="POST" action="{{route('pictograma.delete')}}" enctype="multipart/form-data">
                                     @csrf
                                     
@@ -194,9 +194,9 @@
                                         
                                     </div>
                                     <div class="row-ida" style="display:flex;flex-direction:column;align-items:center;">
-                                            <label for="" style="background: orangered;border:solid;border-radius:30px;">Borrar Pictograma</label>
+                                            <label for="" style="background: orangered;border:solid;border-radius:30px;height: 50px;display: flex;align-items: center;">¿Seguro de borrar?</label>
                                                 <a href="{{route('pictograma.delete')}}">
-                                                    <button >¿seguro?
+                                                    <button style="background: orangered;width: 100px;height: 50px;">SI!
                                                     </button>
                                                 </a>
                                         </div>

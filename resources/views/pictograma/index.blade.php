@@ -216,7 +216,7 @@
                         
                     </div>
                     <div class="cuenta">
-                    <a href="{{route('cuenta.index')}}">
+                    <a id="acount" href="{{route('cuenta.index')}}">
                         <img src="./img/LynxIcono.png" alt="">
                     </a>
             </div>
@@ -298,8 +298,8 @@
                 <td width="200"><div class="picto"><button class="picto-img" id="img-{{$d->idPicto}}"><img src="{{Storage::url($d->pictograma)}}" ></button></div></td>
                 <td width="200">{{$d->nomPicto}}</td>
                 <td width="200">{{$d->descPicto}}</td>
-                <td width="200">
-                    <div class="botonesPicto">
+                <td  width="200" >
+                    <div  class="botonesPicto">
                         <a href="{{route('pictograma.edit',$d->idPicto)}}"><button>Editar</button></a>
                         <a href="{{route('pictograma.borrar',$d->idPicto)}}"><button>Borrar</button></a>
                     </div>
@@ -315,7 +315,7 @@
                 <td width="200">{{$p->descPicto}}</td>
                 <td width="200">
                     <div class="botonesPicto">
-                        <a href="{{route('pictograma.edit',$p->idPicto)}}"><button>Editar</button></a>
+                        <a href="{{route('pictograma.edit',$p->idPicto)}}"><button >Editar</button></a>
                         <a href="{{route('pictograma.borrar',$p->idPicto)}}"><button>Borrar</button></a>
                     </div>
                 </td>
@@ -332,7 +332,7 @@
                 
                 <div class="titulo"><label id="a" for="">Frase Creada</label></div>
                 <div class="botones">
-                    <button class="reproduce-button" style="margin-top:38px;border:solid 5px;border-radius:81px;background:yellow;height:93px;width:100px;">
+                    <button class="reproduce-button"  style="margin-top:38px;border:solid 5px;border-radius:81px;background:yellow;height:93px;width:100px;">
                         <img src="./img/voz.png" style="width:82px;border:solid4px;border-radius:89px;height:60px;background:yellow;padding:5px;">
                     </button>
                     <button class="limpiar-button" style="margin-top:20px">
@@ -345,16 +345,24 @@
             </div>
             <div class="AgregarPictograma">
                 <div class="titulo" id="add_picto"> <label for="">Agregar Pictograma</label></div>
-                    <button class="addTask-button" style="margin-top:20px ">
-                        <a href="#agregarPictograma">
-                        <img src="./img/plus.png" alt="Agregar tarea" ></a>
+                    <button class="addTask-button" id="add_pic" style="margin-top:20px ">
+                        <a  href="#agregarPictograma">
+                        <img  src="./img/plus.png" alt="Agregar tarea" ></a>
                     </button>
-                    <dialog id="myDialog">
-                        <h3>This is the heading</h3>
-                        <p>This is the dialog paragraph.</p>
-                        <button id="hide">Close</button>                                    
-                    </dialog>
-                    
+
+                    <div class="titulo" id="fun_cat"><label for="">Funciones Categoria</label></div>
+                    <div class="categoria_funciones" id="fun_cat">
+                        <button class="addTask-button" id="fun_cat_add" style="margin-top:20px ">
+                            <a href="#agregarCategoria">
+                            <img src="./img/plus.png" alt="Agregar tarea" ></a>
+                        </button>
+                        <button class="limpiar-button" id="fun_cat_delete" style="margin-top:20px">
+                            <a href="#eliminarPictograma">
+                                <img src="./img/cancelar.png" style="height=100px;width:146px;">
+                            </a>    
+                        </button>
+                    </div>
+            
                     
 
                     <div id="openModal" class="modalDialog">
@@ -410,7 +418,53 @@
                                 </form>
                             </div>
                         </div>
+                    </div>
+                    <div id="eliminarPictograma" class="modalDialog">
+                        <div>
+                            <a href="#close" title="Close" class="close">X</a>
+                            <div class="SeguroParental"><h3>Eliminar Categoria</h3></div>
+                                <form  method="POST" action="{{route('categoria.store')}}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="input-container">
+                                        <div class="form-dato">
+                                            <label for="color">Selecciona Categoria</label>
+                                            <select id="color" name="idCatPicto">
+                                                @foreach($categorias as $cat)
+                                                    <option value="{{$cat->idCatPicto}}" >{{$cat->nomCat}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        
+                                    <button  type="submit">
+                                        <img src="./img/trash.png" style="color: #FFFFFF;" alt="Enviar informacion" class="button-img">
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
                     </div> 
+                    <div id="agregarCategoria" class="modalDialog">
+                        <div>
+                            <a href="#close" title="Close" class="close">X</a>
+                            <div class="SeguroParental"><h3>Agregar Categoria</h3></div>
+                                <form  method="POST" action="{{route('categoria.store')}}" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="input-container">
+                                        <div class="form-dato">
+                                            <label for="">Nombre Pictograma</label>
+                                            <input type="Text" name="nomCat"/>
+                                        </div>
+                                        <div class="form-dato">
+                                            <label for="">Descripcion Pictograma</label>
+                                            <input type="Text" name="descripcion"/>
+                                        </div>
+                                        
+                                    <button  type="submit">
+                                        <img src="./img/Send.png" alt="Enviar informacion" class="button-img">
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
 
 
@@ -419,9 +473,13 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
         <script>
+            $('#acount').hide();
+            $('#fun_cat_add').hide();
+            $('#fun_cat_delete').hide();
+            $('#fun_cat').hide();
+            $('#add_pic').hide();
+            $('#add_picto').hide();
             function adulto() {
-                // $usuario="";
-                // var dialog = document.getElementById('myDialog'); 
                 if (document.getElementById('flexSwitchCheckDefault').checked) {
                     // console.log("adulto");
 
@@ -429,22 +487,30 @@
 
                     if(clave == "{{$clave}}"){
                         console.log("Aprobado");
-                        $('#add_picto').hide();
-                    }else{
+                        $('#acount').show();
                         $('#add_picto').show();
+                        $('#add_pic').show();
+                        $('#fun_cat').show();
+                        $('#fun_cat_add').show();
+                        $('#fun_cat_delete').show();
+                    }else{
+                        $('#acount').hide();
+                        $('#fun_cat_add').hide();
+                        $('#fun_cat_delete').hide();
+                        $('#fun_cat').hide();
+                        $('#add_pic').hide();
+                        $('#add_picto').hide();
                         console.log("No Aprobado");
                         $('#flexSwitchCheckDefault').prop("checked", false);
-                    }
-
-
-        	        // dialog.show(); 
-
-                    // return $usuario;
-                    
+                    }                    
                 } else {
-                    // console.log("niño");
-                    // dialog.close(); 
-                    // return $usuario;
+                        $('#acount').hide();
+                        $('#fun_cat_add').hide();
+                        $('#fun_cat_delete').hide();
+                        $('#fun_cat').hide();
+                    $('#add_pic').hide();
+                    $('#add_picto').hide();
+
                 }
             }
 

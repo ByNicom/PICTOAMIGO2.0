@@ -201,7 +201,7 @@
                         
                     </div>
                     <div class="cuenta">
-                    <a href="{{route('cuenta.index')}}">
+                    <a id="acount" href="{{route('cuenta.index')}}">
                         <img src="./img/LynxIcono.png" alt="">
                     </a>
                     </div>
@@ -210,19 +210,21 @@
     </nav>
 <div class="main" style="display: flex;flex-direction: column;align-items: center;">
     <section class="taskOptions-container">
-            <div class="addTask">
+        
+            <div id="add_task" class="addTask">
                 <h1>Agregar Actividad</h1>
-                <button class="addTask-button" style="margin-top:15px;background: none;border: none;">
-                    <a href="#agregarPictograma">
-                        <img src="{{asset('img/plus.png')}}" alt="Agregar tarea">
-                    </a>
+            </div>
+            <div class="agregar actividad">
+                <button id="add_horario" class="addTask-button" style="margin-top:15px;background: none;border: none;">
+                        <a href="#agregarPictograma">
+                            <img src="{{asset('img/plus.png')}}" alt="Agregar tarea">
+                        </a>
                 </button>
-                
             </div>
             <div class="form-limpiar">
                 <form action="{{route('horario.limpiar')}}" method="post">
                     @csrf
-                    <input type="submit" value="Limpiar Horario">
+                    <input id="clear" type="submit" value="Limpiar Horario">
                 </form>
             </div>
         </section>
@@ -300,6 +302,10 @@
     </div>
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
     <script>
+        $('#acount').hide();
+        $('#add_task').hide();
+        $('#add_horario').hide();
+        $('#clear').hide();
 
         $('#x').click(function(){
             
@@ -339,36 +345,33 @@
         @endforeach
 
 
+            function adulto() {
+                if (document.getElementById('flexSwitchCheckDefault').checked) {
+                    
+                    let clave = prompt("Ingrese su clave parental");
 
-        function adulto() {
-            $usuario="";
-            if (document.getElementById('flexSwitchCheckDefault').checked) {
-                console.log("adulto");
-                
+                    if(clave == "{{$clave}}"){
+                        console.log("Aprobado");
+                        $('#acount').show();
+                        $('#add_task').show();
+                        $('#add_horario').show();
+                        $('#clear').show();
+                    }else{
+                        $('#acount').hide();
+                        $('#add_task').hide();
+                        $('#add_horario').hide();
+                        $('#clear').hide();
+                        console.log("No Aprobado");
+                        $('#flexSwitchCheckDefault').prop("checked", false);
+                    }                    
+                } else {
+                    $('#acount').hide();
+                    $('#add_task').hide();
+                    $('#add_horario').hide();
+                    $('#clear').hide();
 
-                const synth = window.speechSynthesis;
-                var text = "adulto";
-                
-                const utterThis = new SpeechSynthesisUtterance(text);
-
-                synth.speak(utterThis);
-
-
-                return $usuario;
-                
-            } else {
-                console.log("niño");
-
-                const synth = window.speechSynthesis;
-                var text = "niño";
-                
-                const utterThis = new SpeechSynthesisUtterance(text);
-
-                synth.speak(utterThis);
-
-                return $usuario;
+                }
             }
-        }
 
 
         function sonido(title){

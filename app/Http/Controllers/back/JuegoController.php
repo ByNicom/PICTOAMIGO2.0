@@ -29,7 +29,7 @@ class JuegoController extends Controller
         $juego = new Juego(); 
         $juego->idCatPicto = $request->idCatPicto;
         $juego->idPregunta = $request->idPregunta;
-        $juego->save;
+        $juego->save();
     }
 
     /**

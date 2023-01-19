@@ -123,7 +123,7 @@ nav {
                         
                     </div>
                     <div class="cuenta">
-                        <a href="{{route('cuenta.index')}}">
+                        <a id="acount" href="{{route('cuenta.index')}}">
                             <img src="./img/LynxIcono.png" alt="">
                         </a>
                     </div>
@@ -165,17 +165,26 @@ nav {
                 <img src="./img/niños2.png" alt="">
             </div>
         </div>
+        <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
         <script>
+            $('#acount').hide();
             function adulto() {
-                $usuario="";
                 if (document.getElementById('flexSwitchCheckDefault').checked) {
-                    console.log("adulto");
                     
-                    return $usuario;
-                    
+                    let clave = prompt("Ingrese su clave parental");
+
+                    if(clave == "{{$clave}}"){
+                        console.log("Aprobado");
+                        $('#acount').show();
+                    }else{
+                        $('#acount').hide();
+                        console.log("No Aprobado");
+                        $('#flexSwitchCheckDefault').prop("checked", false);
+                    }                    
                 } else {
-                    console.log("niño");
-                    return $usuario;
+
+                    $('#acount').hide();
+
                 }
             }
         </script>

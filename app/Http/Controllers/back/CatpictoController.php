@@ -26,11 +26,12 @@ class CatpictoController extends Controller
      */
     public function store(Request $request)
     {
-        $catPicto = new Pictograma(); 
-        $catPicto->idPicto = $request->idCatPicto;
+        $catPicto = new Catpicto(); 
+        $catPicto->idCatPicto = $request->idCatPicto;
         $catPicto->nomCat = $request->nomCat;
         $catPicto->descripcion = $request->descripcion;
         $catPicto->save();
+        return redirect()->route("pictograma.index");
     }
 
     /**
@@ -64,6 +65,7 @@ class CatpictoController extends Controller
      */
     public function destroy(Catpicto $catpicto)
     {
-        //
+        $catpicto->delete();
+        return redirect()->route("pictograma.index");
     }
 }

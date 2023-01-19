@@ -18,7 +18,8 @@ class HomeController extends Controller
     }
 
     public function index(){
-        return view('home.index');
+        $clave = Usuario::where('Email',Auth::user()->Email)->first()->clave;
+        return view('home.index',compact("clave"));
     }
 
     public function login(){
@@ -34,9 +35,8 @@ class HomeController extends Controller
     public function horario(){
         $usuario = Usuario::where('Email',Auth::user()->Email)->first();
         $pictos=Pictograma::all();
-        //$horario=Acthorario::all();
         $horario = Acthorario::where('email', Auth::user()->Email)->get();
-        //dd($horario);
+        $clave = Usuario::where('Email',Auth::user()->Email)->first()->clave;
         $array_horas = [];
         foreach($horario as $h){
             $array_horas[] = date('H', strtotime($h->fecha));
@@ -45,7 +45,7 @@ class HomeController extends Controller
         $pictos_semana = Acthorario::join('pictograma', 'act_horario.idPicto', '=', 'pictograma.idPicto')->where('act_horario.email', Auth::user()->Email)->get();
         
 
-        return view('calendario.index',compact("pictos","usuario","horario", "array_horas", "pictos_semana"));
+        return view('calendario.index',compact("pictos","usuario","horario", "array_horas", "pictos_semana","clave"));
     }
     public function prueba(){
         $usuario = Usuario::where('Email',Auth::user()->Email)->first();

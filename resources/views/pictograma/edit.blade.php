@@ -15,7 +15,7 @@
 
 body {
     height: 100vh;
-    background: rgb(82, 231, 225);
+    background-color: #8fd2f7;
 }
 
 nav {
@@ -180,7 +180,7 @@ label {
                                             <input readonly type="Text" name="idPicto" value="{{$picto->idPicto}}"/>
                                         </div>
                                         <div class="form-dato">
-                                            <label for="">Agregar Pictograma</label>
+                                            <label for="">Pictograma</label>
                                             <img src="{{Storage::url($picto->pictograma)}}" style="width: 100px;" src="" alt="">
                                             <input type="hidden" readonly  id="pictograma" name="pictograma" value="{{$picto->pictograma}}"  class="form-control-file"/>
                                         </div>

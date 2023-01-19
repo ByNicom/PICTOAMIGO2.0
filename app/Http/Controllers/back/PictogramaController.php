@@ -80,7 +80,6 @@ class PictogramaController extends Controller
     public function destroy(Request $request,Pictograma $pictograma)
     {
         $pictograma=Pictograma::find($request->idPicto);
-        //$pictograma->idPicto = $request->idPicto;
         $pictograma->delete();
         return redirect()->route("pictograma.index");
     }

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\front\HomeController;
-use App\Http\Controllers\back\{UsuarioController,PictogramaController,ActhorarioController};
+use App\Http\Controllers\back\{UsuarioController,PictogramaController,ActhorarioController,CatpictoController};
 
 /*
 |--------------------------------------------------------------------------
@@ -43,5 +43,7 @@ Route::get('/pictogramas/limpiar', [PictogramaController::class,'limpiar'])->nam
 Route::post('/Horario',[ActhorarioController::class,'store'])->name('horario.store');
 Route::post('/Horario/limpiar',[ActhorarioController::class,'limpiar'])->name('horario.limpiar');
 
+Route::post('/categoria',[CatpictoController::class,'store'])->name('categoria.store');
+Route::post('/categoria/delete',[CatpictoController::class,'destroy'])->name('categoria.delete');
 
 Route::get('/account/{{usuario}}',[UsuarioController::class,'show'])->name('usuario.show');
