@@ -26,7 +26,7 @@ class CatpictoController extends Controller
      */
     public function store(Request $request)
     {
-        $catPicto = new Catpicto(); 
+        $catPicto = new Catpicto();
         $catPicto->idCatPicto = $request->idCatPicto;
         $catPicto->nomCat = $request->nomCat;
         $catPicto->descripcion = $request->descripcion;
@@ -63,9 +63,10 @@ class CatpictoController extends Controller
      * @param  \App\Models\Catpicto  $catpicto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Catpicto $catpicto)
+    public function destroy(Request $request)
     {
-        $catpicto->delete();
+        $cat = Catpicto::find($request->idCatPicto);
+        $cat->delete();
         return redirect()->route("pictograma.index");
     }
 }

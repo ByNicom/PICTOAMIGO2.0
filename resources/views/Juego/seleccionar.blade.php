@@ -5,112 +5,111 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PictoAmigo</title>
-
     <style>
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        }
 
-body {
-    height: 100vh;
-}
+    body {
+        height: 100vh;
+    }
 
-nav {
-    
-    height: 76px;
-    width: 100%;
-    padding: 5px 20px;
-    background-color: #a6dbf4;
-    padding-left: 38%;
-} 
+    nav {
 
-select{
-    width: 256px;
-    height: 70px;
-    font-size: 46px;
-}
-button{
-    width: 256px;
-    height: 70px;
-    font-size: 43px;
-    margin-left: 127px;
-    background-color: burlywood;
-    border-color: chocolate;
-    border-width: 9px;
-}
-.container {
-    width: 100%;
-    max-width: 1000px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-}
+        height: 76px;
+        width: 100%;
+        padding: 5px 20px;
+        background-color: #a6dbf4;
+        padding-left: 38%;
+    }
 
-.container_nav{
+    select{
+        width: 256px;
+        height: 70px;
+        font-size: 46px;
+    }
+    button{
+        width: 256px;
+        height: 70px;
+        font-size: 43px;
+        margin-left: 127px;
+        background-color: burlywood;
+        border-color: chocolate;
+        border-width: 9px;
+    }
+    .container {
+        width: 100%;
+        max-width: 1000px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
 
-    width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    justify-content: flex-end;
-}
+    .container_nav{
 
-.row_nav_logo{
-    padding-right: 41%;
-}
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: flex-end;
+    }
 
-.menu {
-    position: relative;
-    padding: 50px 20px 30px 20px;
-    width: 80%;
-    background-color: grey;
-    border: 3px dashed rgb(63, 60, 60);
-    border-radius: 25px;
-    margin: 50px 0;
-}
+    .row_nav_logo{
+        padding-right: 41%;
+    }
 
-.logo {
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    top: -40px;
-    left: calc(28%);
-}
+    .menu {
+        position: relative;
+        padding: 50px 20px 30px 20px;
+        width: 80%;
+        background-color: grey;
+        border: 3px dashed rgb(63, 60, 60);
+            border-radius: 25px;
+            margin: 50px 0;
+        }
 
-.options-container {
-    display: flex;
-    justify-content: space-around;
-    color: black;
-    font-size: 24px;
-    font-weight: bold;
-    font-family: Arial, Helvetica, sans-serif;
-}
-.cuenta a img {
-    height: 70px;
-    width: 70px;
-    border: solid;
-    border-color: black;
-    border-radius: 40px;
-    background-color: white;
-}
+        .logo {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: -40px;
+            left: calc(28%);
+        }
+
+        .options-container {
+            display: flex;
+            justify-content: space-around;
+            color: black;
+            font-size: 24px;
+            font-weight: bold;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .cuenta a img {
+            height: 70px;
+            width: 70px;
+            border: solid;
+            border-color: black;
+            border-radius: 40px;
+            background-color: white;
+        }
 
 
-.option a{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-decoration: none;
-    color: black;
-}
+        .option a{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: black;
+        }
 
-.options-container img {
-    width: 75px;
-    height: 75px;
-}
+        .options-container img {
+            width: 75px;
+            height: 75px;
+        }
 
     </style>
 </head>
@@ -142,7 +141,7 @@ button{
                             <option value="{{$cat->idCatPicto}}" >{{$cat->nomCat}}</option>
                         @endforeach
                     </select>
-                
+
                     <button id="jugar">Juguemos!</button>
             </div>
         </div>
@@ -153,7 +152,12 @@ button{
             $('#jugar').click(function(){
                 let valor = $("#cat :selected").val();
                 window.location.href = "{{route('juego.jugar')}}?idCat="+valor;
-            }); 
+            });
+
+            @if(isset($error))
+                alert("{{$error}}");
+            @endif
+
         });
     </script>
 </body>

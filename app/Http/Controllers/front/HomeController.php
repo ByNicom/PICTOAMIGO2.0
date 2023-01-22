@@ -41,9 +41,9 @@ class HomeController extends Controller
         foreach($horario as $h){
             $array_horas[] = date('H', strtotime($h->fecha));
         }
-        
+
         $pictos_semana = Acthorario::join('pictograma', 'act_horario.idPicto', '=', 'pictograma.idPicto')->where('act_horario.email', Auth::user()->Email)->get();
-        
+
 
         return view('calendario.index',compact("pictos","usuario","horario", "array_horas", "pictos_semana","clave"));
     }
@@ -71,6 +71,14 @@ class HomeController extends Controller
     public function jugar(Request $request){
         $idCat = $request->idCat;
 
+        $categoria_cant = count(Pictograma::where('idCatPicto', $request->idCat)->get()); //cant picto por categoria
+
+        if($categoria_cant < 4){
+            $error = "No hay suficientes pictogramas para jugar " . $categoria_cant . "/4";
+            return redirect()->route('juego.seleccionar', compact("error"));
+        }
+
+
         $random = rand(0, 3);
 
         if($idCat == null){
@@ -85,7 +93,7 @@ class HomeController extends Controller
 
         for($i = 0; $i < 4; $i++){
             $numero = rand(0, count($pictos)-1);
-            
+
             if(in_array($numero, $ocupados)){
                 $i--;
                 continue;
@@ -96,20 +104,20 @@ class HomeController extends Controller
                 }else{
                     array_push($array_pictos2, $pictos[$numero]);
                 }
-                
+
             }
-            
+
         }
-        $pictoElegido = $pictos[$random];        
+        $pictoElegido = $pictos[$random];
 
         return view('juego.jugar',compact("pictos", "categoria", "pictoElegido", "array_pictos1", "array_pictos2"));
     }
     public function picto(Request $request){
-        
+
         $filtrar = null;
 
         $clave = Usuario::where('Email',Auth::user()->Email)->first()->clave;
-        
+
         if(isset($request->filtrar)){
             $filtrar = $request->filtrar;
         }

@@ -41,7 +41,7 @@
             background-color: yellow;
             color: cornflowerblue;
             font-weight: bold;
-            
+
     }
 
     .picto img {
@@ -195,13 +195,13 @@
 
 </style>
 <style>
-    
+
     .Frase img{
         width: 80px;
         height: 60px;
     }
 </style>
-    
+
 
 </head>
 <body style="background-image: url(./img/bg.png)">
@@ -213,7 +213,7 @@
                     </div>
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" onchange="adulto()" id="flexSwitchCheckDefault">
-                        
+
                     </div>
                     <div class="cuenta">
                     <a id="acount" href="{{route('cuenta.index')}}">
@@ -248,7 +248,7 @@
             </form>
         </div>
 
-    
+
     {{-- <div class="mainVista">
         <div class="columnaBusqueda">
             <div class="busqueda">
@@ -277,7 +277,7 @@
 
 
 
-         
+
 
 
 <table style="overflow:scroll; width:500px; height:200px;" class="table table-bordered" method="GET" action="{{route('pictograma.all')}}" >
@@ -287,7 +287,7 @@
       <th width="200" scope="col">Pictograma</th>
       <th width="200" scope="col">Nombre</th>
       <th width="200" scope="col">Detalle</th>
-      <th width="200" scope="col">Acciones</th>
+      <th width="200" scope="col" class="acciones">Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -298,7 +298,7 @@
                 <td width="200"><div class="picto"><button class="picto-img" id="img-{{$d->idPicto}}"><img src="{{Storage::url($d->pictograma)}}" ></button></div></td>
                 <td width="200">{{$d->nomPicto}}</td>
                 <td width="200">{{$d->descPicto}}</td>
-                <td  width="200" >
+                <td  width="200" class="acciones">
                     <div  class="botonesPicto">
                         <a href="{{route('pictograma.edit',$d->idPicto)}}"><button>Editar</button></a>
                         <a href="{{route('pictograma.borrar',$d->idPicto)}}"><button>Borrar</button></a>
@@ -313,7 +313,7 @@
                 <td width="200"><div class="picto"><button class="picto-img" id="img-{{$p->idPicto}}"><img src="{{Storage::url($p->pictograma)}}" ></button></div></td>
                 <td width="200">{{$p->nomPicto}}</td>
                 <td width="200">{{$p->descPicto}}</td>
-                <td width="200">
+                <td width="200" class="acciones">
                     <div class="botonesPicto">
                         <a href="{{route('pictograma.edit',$p->idPicto)}}"><button >Editar</button></a>
                         <a href="{{route('pictograma.borrar',$p->idPicto)}}"><button>Borrar</button></a>
@@ -322,14 +322,14 @@
             </tr>
         @endforeach
     @endif
-    
+
   </tbody>
- 
+
 </table>
         </div>
         <div class="columnFrase">
             <div class="FraseCreada">
-                
+
                 <div class="titulo"><label id="a" for="">Frase Creada</label></div>
                 <div class="botones">
                     <button class="reproduce-button"  style="margin-top:38px;border:solid 5px;border-radius:81px;background:yellow;height:93px;width:100px;">
@@ -340,7 +340,7 @@
                     </button>
                 </div>
                 <div class="Frase">
-                    
+
                 </div>
             </div>
             <div class="AgregarPictograma">
@@ -359,11 +359,11 @@
                         <button class="limpiar-button" id="fun_cat_delete" style="margin-top:20px">
                             <a href="#eliminarPictograma">
                                 <img src="./img/cancelar.png" style="height=100px;width:146px;">
-                            </a>    
+                            </a>
                         </button>
                     </div>
-            
-                    
+
+
 
                     <div id="openModal" class="modalDialog">
                         <div>
@@ -384,7 +384,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div id="agregarPictograma" class="modalDialog">
                         <div>
                             <a href="#close" title="Close" class="close">X</a>
@@ -423,7 +423,7 @@
                         <div>
                             <a href="#close" title="Close" class="close">X</a>
                             <div class="SeguroParental"><h3>Eliminar Categoria</h3></div>
-                                <form  method="POST" action="{{route('categoria.store')}}" enctype="multipart/form-data">
+                                <form  method="POST" action="{{route('categoria.delete')}}" enctype="multipart/form-data">
                                     @csrf
                                     <div class="input-container">
                                         <div class="form-dato">
@@ -434,14 +434,14 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        
+
                                     <button  type="submit">
                                         <img src="./img/trash.png" style="color: #FFFFFF;" alt="Enviar informacion" class="button-img">
                                     </button>
                                 </form>
                             </div>
                         </div>
-                    </div> 
+                    </div>
                     <div id="agregarCategoria" class="modalDialog">
                         <div>
                             <a href="#close" title="Close" class="close">X</a>
@@ -450,14 +450,14 @@
                                     @csrf
                                     <div class="input-container">
                                         <div class="form-dato">
-                                            <label for="">Nombre Pictograma</label>
+                                            <label for="">Nombre Categoria</label>
                                             <input type="Text" name="nomCat"/>
                                         </div>
                                         <div class="form-dato">
-                                            <label for="">Descripcion Pictograma</label>
+                                            <label for="">Descripcion Categoria</label>
                                             <input type="Text" name="descripcion"/>
                                         </div>
-                                        
+
                                     <button  type="submit">
                                         <img src="./img/Send.png" alt="Enviar informacion" class="button-img">
                                     </button>
@@ -468,7 +468,7 @@
 
 
 
-                </div>     
+                </div>
             </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
@@ -486,6 +486,7 @@
                     let clave = prompt("Ingrese su clave parental");
 
                     if(clave == "{{$clave}}"){
+                        $('.acciones').show();
                         console.log("Aprobado");
                         $('#acount').show();
                         $('#add_picto').show();
@@ -494,6 +495,7 @@
                         $('#fun_cat_add').show();
                         $('#fun_cat_delete').show();
                     }else{
+                        $('.acciones').hide();
                         $('#acount').hide();
                         $('#fun_cat_add').hide();
                         $('#fun_cat_delete').hide();
@@ -502,22 +504,31 @@
                         $('#add_picto').hide();
                         console.log("No Aprobado");
                         $('#flexSwitchCheckDefault').prop("checked", false);
-                    }                    
+                    }
                 } else {
-                        $('#acount').hide();
-                        $('#fun_cat_add').hide();
-                        $('#fun_cat_delete').hide();
-                        $('#fun_cat').hide();
+                    $('.acciones').hide();
+                    $('#acount').hide();
+                    $('#fun_cat_add').hide();
+                    $('#fun_cat_delete').hide();
+                    $('#fun_cat').hide();
                     $('#add_pic').hide();
                     $('#add_picto').hide();
 
                 }
             }
 
+            $(document).ready(function(){
+                $('.acciones').hide();
+            });
+
+
+
+
+
             $(".reproduce-button").click(function(){
                 const synth = window.speechSynthesis;
-                
-                
+
+
                 const utterThis = new SpeechSynthesisUtterance(frase);
 
                 synth.speak(utterThis);
@@ -541,7 +552,7 @@
                     $(this).parents("tr").find('td:eq(2)').each(function(){
                     valores.push(this);
                     });
-                    
+
                     console.log(valores[0].innerHTML)
                     picto=valores[0].innerHTML;
                     existe=frase.includes(picto);
@@ -554,7 +565,7 @@
                     //obtener imagen
 
                     let src_imagen = $("#"+this.id+" img").attr("src");
-                    
+
 
                     existe=valores_pic.includes(src_imagen);
                     if(!existe){
@@ -566,7 +577,7 @@
                     agregarImagen(valores_pic);
                 });
 
-                
+
 
             });
             var frase=[];
@@ -575,28 +586,28 @@
 
 
             function agregarImagen(valores_pic){
-                
+
                 //$('.Frase').innerHTML = "";
                 $(".Frase").html("");
-                
+
 
                 valores_pic.forEach(element => {
 
                     let img = new Image();
                     img.src = element;
-                    
+
                     $('.Frase').append(img);
                 });
 
                 valores_pic = [];
-            
+
             }
 
 
 
         </script>
     </div>
-    
+
 </body>
 
 </html>
