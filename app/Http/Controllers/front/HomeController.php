@@ -89,6 +89,8 @@ class HomeController extends Controller
 
         $array_pictos1 = [];
         $array_pictos2 = [];
+        $array_pictos3 = [];
+        $array_pictos4 = [];
         $ocupados = [];
 
         for($i = 0; $i < 4; $i++){
@@ -99,18 +101,27 @@ class HomeController extends Controller
                 continue;
             }else{
                 array_push($ocupados, $numero);
-                if($i <= 1){
+                if($i == 0){
                     array_push($array_pictos1, $pictos[$numero]);
-                }else{
+                }if($i == 1){
                     array_push($array_pictos2, $pictos[$numero]);
+                }if($i == 2){
+                    array_push($array_pictos3, $pictos[$numero]);
+                }if($i == 3){
+                    array_push($array_pictos4, $pictos[$numero]);
                 }
 
             }
 
         }
         $pictoElegido = $pictos[$random];
+        // while (!in_array($pictoElegido,$ocupados)) {
+        //     $pictoElegido = $pictos[$random];
+        // }
+        
+        
 
-        return view('juego.jugar',compact("pictos", "categoria", "pictoElegido", "array_pictos1", "array_pictos2"));
+        return view('juego.jugar',compact("pictos", "categoria", "pictoElegido", "array_pictos1", "array_pictos2", "array_pictos3", "array_pictos4"));
     }
     public function picto(Request $request){
 

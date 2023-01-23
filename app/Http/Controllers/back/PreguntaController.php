@@ -32,6 +32,8 @@ class PreguntaController extends Controller
         $pregunta->pregunta = $request->pregunta;
         $pregunta->respuesta = $request->respuesta;
         $pregunta->save;
+        dd($pregunta);
+        return view('home.index');
     }
 
     /**
